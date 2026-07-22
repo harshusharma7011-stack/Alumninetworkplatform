@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Alumni Network Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🎓 Alumni Network
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="directory.html" class="nav-link">Alumni</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="mentorship.html" class="nav-link">Mentorship</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">Logout</a></li>
+                <li><button id="darkModeToggle" class="dark-mode-toggle">🌙</button></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Welcome Card -->
+        <div class="welcome-card">
+            <h1>Hello Harshita 👋</h1>
+            <p>Welcome back to your alumni dashboard. Stay connected and explore new opportunities.</p>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Quick Actions</h2>
+            <div class="quick-actions-grid">
+                <button class="quick-action-btn" onclick="window.location.href='profile.html'">
+                    <span class="icon">👤</span>
+                    <span>Profile</span>
+                </button>
+                <button class="quick-action-btn" onclick="window.location.href='directory.html'">
+                    <span class="icon">👥</span>
+                    <span>Directory</span>
+                </button>
+                <button class="quick-action-btn" onclick="window.location.href='jobs.html'">
+                    <span class="icon">💼</span>
+                    <span>Jobs</span>
+                </button>
+                <button class="quick-action-btn" onclick="window.location.href='events.html'">
+                    <span class="icon">📅</span>
+                    <span>Events</span>
+                </button>
+                <button class="quick-action-btn" onclick="window.location.href='mentorship.html'">
+                    <span class="icon">🤝</span>
+                    <span>Mentorship</span>
+                </button>
+                <button class="quick-action-btn" onclick="window.location.href='announcements.html'">
+                    <span class="icon">📢</span>
+                    <span>Announcements</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="dashboard-stats">
+            <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Your Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🔗</div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Connections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Applied Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎉</div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Registered Events</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Mentorship Requests</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Activity Feed -->
+            <div class="activity-feed">
+                <h3>Recent Activity</h3>
+                <div class="activity-item">
+                    <div class="activity-icon">🎉</div>
+                    <div class="activity-content">
+                        <h4>You RSVPed for Annual Alumni Meet</h4>
+                        <p>Don't forget to mark your calendar!</p>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🔗</div>
+                    <div class="activity-content">
+                        <h4>You connected with Rohit Sharma</h4>
+                        <p>Start a conversation to build your network.</p>
+                        <span class="activity-time">1 day ago</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📝</div>
+                    <div class="activity-content">
+                        <h4>You applied for Software Engineer at Google</h4>
+                        <p>Good luck with your application!</p>
+                        <span class="activity-time">3 days ago</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🤝</div>
+                    <div class="activity-content">
+                        <h4>Mentorship request accepted</h4>
+                        <p>Anjali Gupta is now your mentor.</p>
+                        <span class="activity-time">5 days ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Profile Card -->
+                <div class="sidebar-card profile-card">
+                    <div class="profile-avatar">HS</div>
+                    <h4>Harshita Sharma</h4>
+                    <div class="role">Software Engineer</div>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <div class="value">24</div>
+                            <div class="label">Connections</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="value">8</div>
+                            <div class="label">Jobs</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="value">5</div>
+                            <div class="label">Events</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="window.location.href='profile.html'">View Profile</button>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="sidebar-card">
+                    <h3>Upcoming Events</h3>
+                    <div class="event-sidebar-item">
+                        <h4>Annual Alumni Meet</h4>
+                        <div class="date">Dec 15, 2024</div>
+                    </div>
+                    <div class="event-sidebar-item">
+                        <h4>Tech Talk: AI in Industry</h4>
+                        <div class="date">Dec 20, 2024</div>
+                    </div>
+                    <div class="event-sidebar-item">
+                        <h4>Career Guidance Webinar</h4>
+                        <div class="date">Jan 5, 2025</div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" style="width: 100%;" onclick="window.location.href='events.html'">View All Events</button>
+                </div>
+
+                <!-- Notifications -->
+                <div class="sidebar-card">
+                    <h3>Notifications</h3>
+                    <div class="notification-item unread">
+                        <div class="notification-icon">📢</div>
+                        <div class="notification-content">
+                            <h4>New job posting at Microsoft</h4>
+                            <p>Check out the latest opportunities</p>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon">🎉</div>
+                        <div class="notification-content">
+                            <h4>Event reminder: Annual Meet</h4>
+                            <p>Event starts in 2 days</p>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon">🔗</div>
+                        <div class="notification-content">
+                            <h4>New connection request</h4>
+                            <p>Rahul Kumar wants to connect</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Alumni Network Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🎓 Alumni Network
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="directory.html" class="nav-link">Alumni</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="mentorship.html" class="nav-link">Mentorship</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="profile.html" class="nav-link active">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">Logout</a></li>
+                <li><button id="darkModeToggle" class="dark-mode-toggle">🌙</button></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-header-avatar">HS</div>
+        <h1 id="profileName">Harshita Sharma</h1>
+        <div class="batch" id="profileBatch">Batch of 2022</div>
+    </div>
+
+    <!-- Profile Details -->
+    <div class="profile-details">
+        <!-- Personal Information -->
+        <div class="profile-section">
+            <h3>Personal Information</h3>
+            <div class="profile-info-grid">
+                <div class="profile-info-item">
+                    <label>Full Name</label>
+                    <p>Harshita Sharma</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Email</label>
+                    <p>harshita.sharma@email.com</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Phone</label>
+                    <p>+91 98765 43210</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Location</label>
+                    <p id="profileLocation">Bangalore, India</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Information -->
+        <div class="profile-section">
+            <h3>Academic Information</h3>
+            <div class="profile-info-grid">
+                <div class="profile-info-item">
+                    <label>Graduation Year</label>
+                    <p>2022</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Branch</label>
+                    <p id="profileBranch">Computer Science</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Degree</label>
+                    <p>Bachelor of Computer Applications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Information -->
+        <div class="profile-section">
+            <h3>Professional Information</h3>
+            <div class="profile-info-grid">
+                <div class="profile-info-item">
+                    <label>Current Company</label>
+                    <p id="profileCompany">Google</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Job Role</label>
+                    <p id="profileRole">Software Engineer</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>Experience</label>
+                    <p>2 years</p>
+                </div>
+                <div class="profile-info-item">
+                    <label>LinkedIn</label>
+                    <p><a href="#" id="profileLinkedin">View Profile</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="profile-section">
+            <h3>Skills</h3>
+            <div class="skills-tags">
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Docker</span>
+            </div>
+        </div>
+
+        <!-- About -->
+        <div class="profile-section">
+            <h3>About</h3>
+            <p>Passionate software engineer with expertise in full-stack development. I love building scalable web applications and contributing to open-source projects. Always eager to learn new technologies and mentor aspiring developers.</p>
+        </div>
+
+        <!-- Edit Profile Button -->
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg" onclick="openEditProfileModal()">Edit Profile</button>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="card" style="max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+            <div class="card-header d-flex justify-between align-center">
+                <h3>Edit Profile</h3>
+                <button onclick="closeEditProfileModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+            </div>
+            <div class="card-body">
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" value="Harshita Sharma">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="harshita.sharma@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-control" value="+91 98765 43210">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Current Company</label>
+                        <input type="text" class="form-control" value="Google">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Job Role</label>
+                        <input type="text" class="form-control" value="Software Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" class="form-control" value="Bangalore, India">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">LinkedIn</label>
+                        <input type="url" class="form-control" value="https://linkedin.com/in/harshitasharma">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">About</label>
+                        <textarea class="form-control">Passionate software engineer with expertise in full-stack development.</textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-secondary" onclick="closeEditProfileModal()" style="flex: 1;">Cancel</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function openEditProfileModal() {
+            document.getElementById('editProfileModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Profile updated successfully!');
+            closeEditProfileModal();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Directory - Alumni Network Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🎓 Alumni Network
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="directory.html" class="nav-link active">Alumni</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="mentorship.html" class="nav-link">Mentorship</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">Logout</a></li>
+                <li><button id="darkModeToggle" class="dark-mode-toggle">🌙</button></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Directory Header -->
+    <div class="directory-header">
+        <div class="container text-center">
+            <h1>Alumni Directory</h1>
+            <p>Find and connect with alumni from your university</p>
+        </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="directory-search">
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search alumni by name, company, or skills...">
+        </div>
+        <div class="filters">
+            <select id="batchFilter" class="form-control filter-select">
+                <option value="">All Batches</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+            </select>
+            <select id="locationFilter" class="form-control filter-select">
+                <option value="">All Locations</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Pune">Pune</option>
+                <option value="International">International</option>
+            </select>
+            <select id="industryFilter" class="form-control filter-select">
+                <option value="">All Industries</option>
+                <option value="Technology">Technology</option>
+                <option value="Finance">Finance</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Education">Education</option>
+                <option value="Consulting">Consulting</option>
+                <option value="Manufacturing">Manufacturing</option>
+            </select>
+            <button id="resetFilters" class="btn btn-secondary">Reset Filters</button>
+        </div>
+    </div>
+
+    <!-- Alumni Grid -->
+    <div class="alumni-grid" id="alumniGrid">
+        <!-- Alumni Card 1 -->
+        <div class="alumni-card" data-name="Harshita Sharma" data-batch="2022" data-location="Bangalore" data-industry="Technology">
+            <div class="alumni-card-avatar">HS</div>
+            <h4>Harshita Sharma</h4>
+            <div class="company">Google</div>
+            <div class="role">Software Engineer</div>
+            <div class="location">📍 Bangalore, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="1" onclick="connectWithAlumni(1)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 2 -->
+        <div class="alumni-card" data-name="Rohit Sharma" data-batch="2021" data-location="Mumbai" data-industry="Finance">
+            <div class="alumni-card-avatar">RS</div>
+            <h4>Rohit Sharma</h4>
+            <div class="company">Goldman Sachs</div>
+            <div class="role">Data Analyst</div>
+            <div class="location">📍 Mumbai, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="2" onclick="connectWithAlumni(2)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 3 -->
+        <div class="alumni-card" data-name="Anjali Gupta" data-batch="2022" data-location="Delhi" data-industry="Technology">
+            <div class="alumni-card-avatar">AG</div>
+            <h4>Anjali Gupta</h4>
+            <div class="company">Microsoft</div>
+            <div class="role">UI/UX Designer</div>
+            <div class="location">📍 Delhi, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="3" onclick="connectWithAlumni(3)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 4 -->
+        <div class="alumni-card" data-name="Vikram Singh" data-batch="2020" data-location="Hyderabad" data-industry="Technology">
+            <div class="alumni-card-avatar">VS</div>
+            <h4>Vikram Singh</h4>
+            <div class="company">Amazon</div>
+            <div class="role">Product Manager</div>
+            <div class="location">📍 Hyderabad, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="4" onclick="connectWithAlumni(4)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 5 -->
+        <div class="alumni-card" data-name="Priya Patel" data-batch="2021" data-location="Chennai" data-industry="Healthcare">
+            <div class="alumni-card-avatar">PP</div>
+            <h4>Priya Patel</h4>
+            <div class="company">Apollo Hospitals</div>
+            <div class="role">Healthcare Analyst</div>
+            <div class="location">📍 Chennai, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="5" onclick="connectWithAlumni(5)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 6 -->
+        <div class="alumni-card" data-name="Amit Kumar" data-batch="2019" data-location="Pune" data-industry="Technology">
+            <div class="alumni-card-avatar">AK</div>
+            <h4>Amit Kumar</h4>
+            <div class="company">Infosys</div>
+            <div class="role">Senior Developer</div>
+            <div class="location">📍 Pune, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="6" onclick="connectWithAlumni(6)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 7 -->
+        <div class="alumni-card" data-name="Sneha Reddy" data-batch="2023" data-location="Bangalore" data-industry="Consulting">
+            <div class="alumni-card-avatar">SR</div>
+            <h4>Sneha Reddy</h4>
+            <div class="company">Deloitte</div>
+            <div class="role">Business Consultant</div>
+            <div class="location">📍 Bangalore, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="7" onclick="connectWithAlumni(7)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 8 -->
+        <div class="alumni-card" data-name="Rahul Mehta" data-batch="2018" data-location="International" data-industry="Technology">
+            <div class="alumni-card-avatar">RM</div>
+            <h4>Rahul Mehta</h4>
+            <div class="company">Meta</div>
+            <div class="role">Engineering Manager</div>
+            <div class="location">📍 San Francisco, USA</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="8" onclick="connectWithAlumni(8)">Connect</button>
+        </div>
+
+        <!-- Alumni Card 9 -->
+        <div class="alumni-card" data-name="Neha Kapoor" data-batch="2022" data-location="Mumbai" data-industry="Finance">
+            <div class="alumni-card-avatar">NK</div>
+            <h4>Neha Kapoor</h4>
+            <div class="company">JP Morgan</div>
+            <div class="role">Investment Banker</div>
+            <div class="location">📍 Mumbai, India</div>
+            <button class="btn btn-primary btn-sm" data-alumni-id="9" onclick="connectWithAlumni(9)">Connect</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/directory.js"></script>
+</body>
+</html>

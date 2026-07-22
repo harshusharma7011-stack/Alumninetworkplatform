@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship - Alumni Network Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🎓 Alumni Network
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="directory.html" class="nav-link">Alumni</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="mentorship.html" class="nav-link active">Mentorship</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">Logout</a></li>
+                <li><button id="darkModeToggle" class="dark-mode-toggle">🌙</button></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mentorship Header -->
+    <div class="mentorship-header">
+        <div class="container text-center">
+            <h1>Mentorship Program</h1>
+            <p>Connect with experienced alumni mentors to guide your career journey</p>
+        </div>
+    </div>
+
+    <!-- Mentors Grid -->
+    <div class="mentors-grid">
+        <!-- Mentor Card 1 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">RS</div>
+            <h4>Rohit Sharma</h4>
+            <div class="company">Goldman Sachs</div>
+            <div class="experience">10+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Data Science</span>
+                <span class="mentor-skill">Finance</span>
+                <span class="mentor-skill">Python</span>
+                <span class="mentor-skill">Machine Learning</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="1" onclick="requestMentorship(1)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 2 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">AG</div>
+            <h4>Anjali Gupta</h4>
+            <div class="company">Microsoft</div>
+            <div class="experience">8+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">UI/UX Design</span>
+                <span class="mentor-skill">Product Design</span>
+                <span class="mentor-skill">Figma</span>
+                <span class="mentor-skill">User Research</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="2" onclick="requestMentorship(2)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 3 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">VS</div>
+            <h4>Vikram Singh</h4>
+            <div class="company">Amazon</div>
+            <div class="experience">12+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Product Management</span>
+                <span class="mentor-skill">Agile</span>
+                <span class="mentor-skill">Strategy</span>
+                <span class="mentor-skill">Leadership</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="3" onclick="requestMentorship(3)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 4 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">AK</div>
+            <h4>Amit Kumar</h4>
+            <div class="company">Infosys</div>
+            <div class="experience">15+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Software Architecture</span>
+                <span class="mentor-skill">Java</span>
+                <span class="mentor-skill">Cloud</span>
+                <span class="mentor-skill">DevOps</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="4" onclick="requestMentorship(4)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 5 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">SR</div>
+            <h4>Sneha Reddy</h4>
+            <div class="company">Deloitte</div>
+            <div class="experience">7+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Business Consulting</span>
+                <span class="mentor-skill">Strategy</span>
+                <span class="mentor-skill">Management</span>
+                <span class="mentor-skill">Analytics</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="5" onclick="requestMentorship(5)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 6 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">RM</div>
+            <h4>Rahul Mehta</h4>
+            <div class="company">Meta</div>
+            <div class="experience">14+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Engineering Management</span>
+                <span class="mentor-skill">System Design</span>
+                <span class="mentor-skill">Scalability</span>
+                <span class="mentor-skill">Tech Leadership</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="6" onclick="requestMentorship(6)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 7 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">NK</div>
+            <h4>Neha Kapoor</h4>
+            <div class="company">JP Morgan</div>
+            <div class="experience">9+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Investment Banking</span>
+                <span class="mentor-skill">Finance</span>
+                <span class="mentor-skill">Risk Management</span>
+                <span class="mentor-skill">Financial Modeling</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="7" onclick="requestMentorship(7)">Request Mentorship</button>
+        </div>
+
+        <!-- Mentor Card 8 -->
+        <div class="mentor-card">
+            <div class="mentor-card-avatar">PP</div>
+            <h4>Priya Patel</h4>
+            <div class="company">Apollo Hospitals</div>
+            <div class="experience">11+ years experience</div>
+            <div class="mentor-skills">
+                <span class="mentor-skill">Healthcare IT</span>
+                <span class="mentor-skill">Data Analytics</span>
+                <span class="mentor-skill">Healthcare Management</span>
+                <span class="mentor-skill">Digital Health</span>
+            </div>
+            <button class="btn btn-primary btn-sm" data-mentor-id="8" onclick="requestMentorship(8)">Request Mentorship</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

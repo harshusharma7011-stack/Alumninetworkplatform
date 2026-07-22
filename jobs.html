@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board - Alumni Network Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🎓 Alumni Network
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="directory.html" class="nav-link">Alumni</a></li>
+                <li><a href="jobs.html" class="nav-link active">Jobs</a></li>
+                <li><a href="mentorship.html" class="nav-link">Mentorship</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">Logout</a></li>
+                <li><button id="darkModeToggle" class="dark-mode-toggle">🌙</button></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jobs Header -->
+    <div class="jobs-header">
+        <div class="container text-center">
+            <h1>Job Board</h1>
+            <p>Explore exclusive job opportunities from our alumni network</p>
+        </div>
+    </div>
+
+    <!-- Jobs Grid -->
+    <div class="jobs-grid">
+        <!-- Job Card 1 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">G</div>
+                <div>
+                    <h4>Software Engineer</h4>
+                    <div class="company-name">Google</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Bangalore, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 2+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹20-35 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="1" onclick="applyForJob(1)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 2 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">M</div>
+                <div>
+                    <h4>Frontend Developer</h4>
+                    <div class="company-name">Microsoft</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Hyderabad, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 3+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹18-30 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="2" onclick="applyForJob(2)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 3 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">I</div>
+                <div>
+                    <h4>Backend Developer</h4>
+                    <div class="company-name">Infosys</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Pune, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 1+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹8-15 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="3" onclick="applyForJob(3)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 4 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">T</div>
+                <div>
+                    <h4>Data Analyst</h4>
+                    <div class="company-name">TCS</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Mumbai, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 2+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹10-18 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="4" onclick="applyForJob(4)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 5 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">A</div>
+                <div>
+                    <h4>UI/UX Designer</h4>
+                    <div class="company-name">Accenture</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Delhi, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 2+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹12-22 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="5" onclick="applyForJob(5)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 6 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">A</div>
+                <div>
+                    <h4>Cloud Architect</h4>
+                    <div class="company-name">Amazon</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Bangalore, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 5+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹30-50 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="6" onclick="applyForJob(6)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 7 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">M</div>
+                <div>
+                    <h4>Product Manager</h4>
+                    <div class="company-name">Meta</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Remote / International
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 4+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> $80-120K
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="7" onclick="applyForJob(7)">Apply Now</button>
+        </div>
+
+        <!-- Job Card 8 -->
+        <div class="job-card">
+            <div class="job-card-header">
+                <div class="company-logo">D</div>
+                <div>
+                    <h4>DevOps Engineer</h4>
+                    <div class="company-name">Deloitte</div>
+                </div>
+            </div>
+            <div class="job-details">
+                <div class="job-detail">
+                    <span>📍</span> Hyderabad, India
+                </div>
+                <div class="job-detail">
+                    <span>💼</span> Full-time
+                </div>
+                <div class="job-detail">
+                    <span>🎓</span> 3+ years experience
+                </div>
+                <div class="job-detail salary">
+                    <span>💰</span> ₹15-25 LPA
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm" data-job-id="8" onclick="applyForJob(8)">Apply Now</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/jobs.js"></script>
+</body>
+</html>

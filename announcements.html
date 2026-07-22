@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Alumni Network Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                🎓 Alumni Network
+            </a>
+            <ul class="navbar-nav">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="directory.html" class="nav-link">Alumni</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="mentorship.html" class="nav-link">Mentorship</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li><a href="#" onclick="logout()" class="nav-link">Logout</a></li>
+                <li><button id="darkModeToggle" class="dark-mode-toggle">🌙</button></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Announcements Header -->
+    <div class="announcements-header">
+        <div class="container text-center">
+            <h1>Announcements</h1>
+            <p>Stay updated with the latest news and updates from the university</p>
+        </div>
+    </div>
+
+    <!-- Announcements Timeline -->
+    <div class="announcements-container">
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>University Notice: Campus Development Project</h4>
+                    <div class="date">📅 December 10, 2024</div>
+                    <p>The university is launching a major campus development project including a new library building and sports complex. Construction will begin in January 2025 and is expected to complete by December 2026.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>Placement Drive 2025 - Registration Open</h4>
+                    <div class="date">📅 December 5, 2024</div>
+                    <p>Registration for the 2025 placement drive is now open. Final year students can register through the university portal. Top companies including Google, Microsoft, and Amazon will be participating.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>Alumni Scholarship Program 2025</h4>
+                    <div class="date">📅 November 28, 2024</div>
+                    <p>The Alumni Association is pleased to announce the 2025 scholarship program for meritorious students. Applications are invited from current students with excellent academic records.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>Workshop: Emerging Technologies in Healthcare</h4>
+                    <div class="date">📅 November 20, 2024</div>
+                    <p>A special workshop on emerging technologies in healthcare will be conducted by alumni working at leading healthcare tech companies. Open to all students and alumni.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>Seminar: Entrepreneurship and Startup Ecosystem</h4>
+                    <div class="date">📅 November 15, 2024</div>
+                    <p>Join us for an insightful seminar on entrepreneurship featuring successful alumni founders who will share their journey and experiences in building startups.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>University Achievements: Ranking Update</h4>
+                    <div class="date">📅 November 10, 2024</div>
+                    <p>We are proud to announce that our university has been ranked among the top 10 institutions in the country for the third consecutive year. This achievement reflects our commitment to excellence.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 7 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>New Research Collaboration Announced</h4>
+                    <div class="date">📅 November 5, 2024</div>
+                    <p>The university has entered into a strategic research collaboration with leading international universities to promote joint research programs and student exchange initiatives.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 8 -->
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <h4>Alumni Chapter Meetups - Schedule Released</h4>
+                    <div class="date">📅 October 28, 2024</div>
+                    <p>Regional alumni chapter meetups have been scheduled for December 2024. Check the events page for details about meetups in your city and register to attend.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
