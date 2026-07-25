@@ -17,6 +17,7 @@ const Register = () => {
     confirmPassword: ''
   });
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState('');
   const navigate = useNavigate();
   const { register } = useAuth();
 
@@ -55,9 +56,9 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       const userData = {
         fullName: formData.fullName,
@@ -72,10 +73,13 @@ const Register = () => {
         password: formData.password,
         registeredAt: new Date().toISOString()
       };
-      
-      register(userData);
-      alert('Registration successful! Please login to continue.');
-      navigate('/login');
+
+      try {
+        await register(userData);
+        navigate('/login');
+      } catch (error) {
+        setServerError(error.message || 'Registration failed');
+      }
     }
   };
 
@@ -231,6 +235,7 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
+          {serverError && <div className="error-message" style={{ display: 'block', marginBottom: '1rem' }}>{serverError}</div>}
           <div className="d-flex gap-2">
             <div className="form-group" style={{ flex: 1 }}>
               <label htmlFor="password" className="form-label">Password</label>

@@ -9,6 +9,7 @@ const Login = () => {
     rememberMe: false
   });
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -22,28 +23,31 @@ const Login = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.email) {
       newErrors.email = 'This field is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'This field is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
-      login(formData.email, formData.password, formData.rememberMe);
-      alert('Login successful! Redirecting to dashboard...');
-      navigate('/dashboard');
+      try {
+        await login(formData.email, formData.password, formData.rememberMe);
+        navigate('/dashboard');
+      } catch (error) {
+        setServerError(error.message || 'Login failed');
+      }
     }
   };
 
@@ -83,6 +87,7 @@ const Login = () => {
             />
             {errors.password && <span className="error-message" style={{ display: 'block' }}>{errors.password}</span>}
           </div>
+          {serverError && <div className="error-message" style={{ display: 'block', marginBottom: '1rem' }}>{serverError}</div>}
           <div className="remember-me">
             <input
               type="checkbox"

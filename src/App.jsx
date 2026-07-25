@@ -27,6 +27,8 @@ function App() {
             <Route path="/" element={<Layout><Home /></Layout>} />
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+            <Route path="/login.html" element={<Navigate to="/login" replace />} />
+            <Route path="/register.html" element={<Navigate to="/register" replace />} />
 
             {/* Protected Routes */}
             <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
@@ -38,6 +40,15 @@ function App() {
             <Route path="/contact" element={<ProtectedRoute><Layout><Contact /></Layout></ProtectedRoute>} />
             <Route path="/announcements" element={<ProtectedRoute><Layout><Announcements /></Layout></ProtectedRoute>} />
             <Route path="/achievements" element={<ProtectedRoute><Layout><Achievements /></Layout></ProtectedRoute>} />
+            <Route path="/dashboard.html" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/profile.html" element={<Navigate to="/profile" replace />} />
+            <Route path="/directory.html" element={<Navigate to="/directory" replace />} />
+            <Route path="/jobs.html" element={<Navigate to="/jobs" replace />} />
+            <Route path="/mentorship.html" element={<Navigate to="/mentorship" replace />} />
+            <Route path="/events.html" element={<Navigate to="/events" replace />} />
+            <Route path="/contact.html" element={<Navigate to="/contact" replace />} />
+            <Route path="/announcements.html" element={<Navigate to="/announcements" replace />} />
+            <Route path="/achievements.html" element={<Navigate to="/achievements" replace />} />
 
             {/* Catch all - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />

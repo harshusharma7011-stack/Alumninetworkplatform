@@ -1,28 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { authApi } from '../services/api';
 
 const Profile = () => {
-  const { userData, currentUser } = useAuth();
+  const { userData, currentUser, logout } = useAuth();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editFormData, setEditFormData] = useState({
-    fullName: userData?.fullName || currentUser?.name || 'Harshita Sharma',
-    email: userData?.email || 'harshita.sharma@email.com',
-    phone: userData?.phone || '+91 98765 43210',
-    currentCompany: userData?.currentCompany || 'Google',
-    jobRole: userData?.jobRole || 'Software Engineer',
-    location: userData?.location || 'Bangalore, India',
-    linkedin: userData?.linkedin || 'https://linkedin.com/in/harshitasharma',
-    about: 'Passionate software engineer with expertise in full-stack development.'
+    fullName: userData?.fullName || currentUser?.fullName || 'Harshita Sharma',
+    email: userData?.email || currentUser?.email || 'harshita.sharma@email.com',
+    phone: userData?.phone || currentUser?.phone || '+91 98765 43210',
+    currentCompany: userData?.currentCompany || currentUser?.currentCompany || 'Google',
+    jobRole: userData?.jobRole || currentUser?.jobRole || 'Software Engineer',
+    location: userData?.location || currentUser?.location || 'Bangalore, India',
+    linkedin: userData?.linkedin || currentUser?.linkedin || 'https://linkedin.com/in/harshitasharma',
+    about: userData?.about || currentUser?.about || 'Passionate software engineer with expertise in full-stack development.'
   });
+
+  useEffect(() => {
+    setEditFormData({
+      fullName: userData?.fullName || currentUser?.fullName || 'Harshita Sharma',
+      email: userData?.email || currentUser?.email || 'harshita.sharma@email.com',
+      phone: userData?.phone || currentUser?.phone || '+91 98765 43210',
+      currentCompany: userData?.currentCompany || currentUser?.currentCompany || 'Google',
+      jobRole: userData?.jobRole || currentUser?.jobRole || 'Software Engineer',
+      location: userData?.location || currentUser?.location || 'Bangalore, India',
+      linkedin: userData?.linkedin || currentUser?.linkedin || 'https://linkedin.com/in/harshitasharma',
+      about: userData?.about || currentUser?.about || 'Passionate software engineer with expertise in full-stack development.'
+    });
+  }, [currentUser, userData]);
 
   const getInitials = (name) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
   };
 
-  const handleEditSubmit = (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
-    alert('Profile updated successfully!');
-    setIsEditModalOpen(false);
+    try {
+      const response = await authApi.updateProfile(editFormData);
+      alert('Profile updated successfully!');
+      localStorage.setItem('userData', JSON.stringify(response.user));
+      setIsEditModalOpen(false);
+    } catch (error) {
+      alert(error.message || 'Profile update failed');
+    }
   };
 
   const handleInputChange = (e) => {
@@ -131,12 +151,15 @@ const Profile = () => {
         </div>
 
         {/* Edit Profile Button */}
-        <div className="text-center">
+        <div className="text-center" style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <button 
             className="btn btn-primary btn-lg" 
             onClick={() => setIsEditModalOpen(true)}
           >
             Edit Profile
+          </button>
+          <button className="btn btn-secondary btn-lg" onClick={logout}>
+            Logout
           </button>
         </div>
       </div>

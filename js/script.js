@@ -175,6 +175,16 @@ document.querySelectorAll('form').forEach(form => {
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
+function getAppRoute(route) {
+    if (!route) return '/';
+    return route.startsWith('/') ? route : `/${route}`;
+}
+
+function redirectToAppRoute(route) {
+    const normalizedRoute = getAppRoute(route).replace(/\.html$/i, '');
+    window.location.assign(normalizedRoute);
+}
+
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -201,7 +211,7 @@ if (loginForm) {
             }
             
             alert('Login successful! Redirecting to dashboard...');
-            window.location.href = 'dashboard.html';
+            redirectToAppRoute('/dashboard');
         }
     });
     
@@ -235,7 +245,7 @@ if (registerForm) {
         localStorage.setItem('userData', JSON.stringify(formData));
         
         alert('Registration successful! Please login to continue.');
-        window.location.href = 'login.html';
+        redirectToAppRoute('/login');
     });
 }
 
@@ -243,10 +253,11 @@ if (registerForm) {
 function checkAuth() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || !currentUser.loggedIn) {
-        // Redirect to login if not on login/register pages
-        const currentPage = window.location.pathname.split('/').pop();
-        if (currentPage !== 'login.html' && currentPage !== 'register.html' && currentPage !== 'index.html') {
-            window.location.href = 'login.html';
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop()?.replace(/\.html$/i, '');
+        const publicPages = ['login', 'register', ''];
+        if (!publicPages.includes(currentPage) && currentPath !== '/') {
+            redirectToAppRoute('/login');
         }
     }
     return currentUser;
@@ -255,7 +266,7 @@ function checkAuth() {
 // Logout function
 function logout() {
     localStorage.removeItem('currentUser');
-    window.location.href = 'login.html';
+    redirectToAppRoute('/login');
 }
 
 // ==================== Event Countdown Timer ====================
@@ -438,8 +449,8 @@ yearElements.forEach(element => {
 // ==================== Initialize on DOM Ready ====================
 document.addEventListener('DOMContentLoaded', () => {
     // Check authentication for protected pages
-    const protectedPages = ['dashboard.html', 'profile.html', 'directory.html', 'jobs.html', 'mentorship.html', 'events.html', 'announcements.html', 'achievements.html'];
-    const currentPage = window.location.pathname.split('/').pop();
+    const protectedPages = ['dashboard', 'profile', 'directory', 'jobs', 'mentorship', 'events', 'announcements', 'achievements', 'dashboard.html', 'profile.html', 'directory.html', 'jobs.html', 'mentorship.html', 'events.html', 'announcements.html', 'achievements.html'];
+    const currentPage = window.location.pathname.split('/').pop()?.replace(/\.html$/i, '');
     
     if (protectedPages.includes(currentPage)) {
         checkAuth();

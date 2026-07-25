@@ -1,33 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { directoryApi } from '../services/api';
 
 const Directory = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [batchFilter, setBatchFilter] = useState('');
   const [locationFilter, setLocationFilter] = useState('');
   const [industryFilter, setIndustryFilter] = useState('');
+  const [alumni, setAlumni] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const alumni = [
-    { id: 1, name: 'Harshita Sharma', initials: 'HS', company: 'Google', role: 'Software Engineer', location: 'Bangalore, India', batch: '2022', industry: 'Technology' },
-    { id: 2, name: 'Rohit Sharma', initials: 'RS', company: 'Goldman Sachs', role: 'Data Analyst', location: 'Mumbai, India', batch: '2021', industry: 'Finance' },
-    { id: 3, name: 'Anjali Gupta', initials: 'AG', company: 'Microsoft', role: 'UI/UX Designer', location: 'Delhi, India', batch: '2022', industry: 'Technology' },
-    { id: 4, name: 'Vikram Singh', initials: 'VS', company: 'Amazon', role: 'Product Manager', location: 'Hyderabad, India', batch: '2020', industry: 'Technology' },
-    { id: 5, name: 'Priya Patel', initials: 'PP', company: 'Apollo Hospitals', role: 'Healthcare Analyst', location: 'Chennai, India', batch: '2021', industry: 'Healthcare' },
-    { id: 6, name: 'Amit Kumar', initials: 'AK', company: 'Infosys', role: 'Senior Developer', location: 'Pune, India', batch: '2019', industry: 'Technology' },
-    { id: 7, name: 'Sneha Reddy', initials: 'SR', company: 'Deloitte', role: 'Business Consultant', location: 'Bangalore, India', batch: '2023', industry: 'Consulting' },
-    { id: 8, name: 'Rahul Mehta', initials: 'RM', company: 'Meta', role: 'Engineering Manager', location: 'San Francisco, USA', batch: '2018', industry: 'Technology' },
-    { id: 9, name: 'Neha Kapoor', initials: 'NK', company: 'JP Morgan', role: 'Investment Banker', location: 'Mumbai, India', batch: '2022', industry: 'Finance' },
-  ];
+  useEffect(() => {
+    const fetchAlumni = async () => {
+      try {
+        const response = await directoryApi.getAll({
+          search: searchTerm,
+          batch: batchFilter,
+          location: locationFilter,
+          industry: industryFilter
+        });
+        setAlumni(response.alumni || []);
+      } catch (err) {
+        setError(err.message || 'Unable to load alumni');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const filteredAlumni = alumni.filter(alum => {
-    const matchesSearch = alum.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         alum.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         alum.role.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesBatch = !batchFilter || alum.batch === batchFilter;
-    const matchesLocation = !locationFilter || alum.location.includes(locationFilter);
-    const matchesIndustry = !industryFilter || alum.industry === industryFilter;
-    
-    return matchesSearch && matchesBatch && matchesLocation && matchesIndustry;
-  });
+    fetchAlumni();
+  }, [searchTerm, batchFilter, locationFilter, industryFilter]);
 
   const handleConnect = (id) => {
     alert(`Connection request sent to alumni #${id}`);
@@ -108,17 +109,19 @@ const Directory = () => {
       </div>
 
       {/* Alumni Grid */}
+      {loading ? <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading alumni...</p> : null}
+      {error ? <p style={{ textAlign: 'center', marginTop: '2rem', color: 'var(--danger)' }}>{error}</p> : null}
       <div className="alumni-grid">
-        {filteredAlumni.map(alum => (
-          <div key={alum.id} className="alumni-card">
-            <div className="alumni-card-avatar">{alum.initials}</div>
+        {!loading && !error && alumni.map(alum => (
+          <div key={alum._id} className="alumni-card">
+            <div className="alumni-card-avatar">{alum.initials || `${alum.name?.split(' ')[0]?.[0] || ''}${alum.name?.split(' ')[1]?.[0] || ''}`}</div>
             <h4>{alum.name}</h4>
             <div className="company">{alum.company}</div>
             <div className="role">{alum.role}</div>
             <div className="location">📍 {alum.location}</div>
             <button 
               className="btn btn-primary btn-sm"
-              onClick={() => handleConnect(alum.id)}
+              onClick={() => handleConnect(alum._id)}
             >
               Connect
             </button>
