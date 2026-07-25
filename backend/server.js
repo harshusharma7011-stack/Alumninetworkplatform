@@ -44,7 +44,27 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+const HOST = process.env.HOST || '127.0.0.1';
+const DEFAULT_PORT = Number(process.env.PORT || process.env.BACKEND_PORT || 5001);
+const MAX_PORT = DEFAULT_PORT + 10;
+
+const startServer = (port) => {
+  const server = app.listen(port, HOST, () => {
+    console.log(`Server is running on http://${HOST}:${port}`);
+  });
+
+  server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE' || error.code === 'EPERM') {
+      if (port < MAX_PORT) {
+        console.warn(`Port ${port} unavailable. Trying port ${port + 1}...`);
+        startServer(port + 1);
+        return;
+      }
+    }
+
+    console.error('Server failed to start:', error.message);
+    process.exit(1);
+  });
+};
+
+startServer(DEFAULT_PORT);

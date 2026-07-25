@@ -20,7 +20,12 @@ const request = async (path, options = {}) => {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(data.message || 'Request failed');
+    const errorMessage = data.message || (
+      Array.isArray(data.errors)
+        ? data.errors.map((error) => error.msg || error.message).join(', ')
+        : 'Request failed'
+    );
+    throw new Error(errorMessage);
   }
 
   return data;
